@@ -40,6 +40,7 @@ std::vector<std::vector<std::pair<uint32_t, uint32_t>>> Grid::GetRegions(Cell ty
 
     auto GetRegion = [&](uint32_t x, uint32_t y)
     {
+        // Fill region
         std::vector<std::pair<uint32_t, uint32_t>> tiles;
         std::queue<std::pair<uint32_t, uint32_t>> to_process;
         to_process.push({ x, y });
@@ -57,24 +58,28 @@ std::vector<std::vector<std::pair<uint32_t, uint32_t>>> Grid::GetRegions(Cell ty
             uint32_t bottom = (ny - 1) * m_width + nx;
             uint32_t top = (ny + 1) * m_width + nx;
 
+            // left
             if (nx > 0 && !checked[left] && m_cells[left] == type)
             {
                 to_process.push({ nx - 1, ny });
                 checked[left] = true;
             }
             
+            // right
             if (nx < m_width - 1 && !checked[right] && m_cells[right] == type)
             {
                 to_process.push({ nx + 1, ny });
                 checked[right] = true;
             }
             
+            // bottom
             if (ny > 0 && !checked[bottom] && m_cells[bottom] == type)
             {
                 to_process.push({ nx, ny - 1 });
                 checked[bottom] = true;
             }
             
+            // top
             if (ny < m_height - 1 && !checked[top] && m_cells[top] == type)
             {
                 to_process.push({ nx, ny + 1 });
@@ -108,6 +113,7 @@ std::vector<std::pair<uint32_t, uint32_t>> Grid::GetRegionBoundary(const std::ve
     std::vector<std::pair<uint32_t, uint32_t>> boundary;
     for (auto[x, y] : region)
     {
+        // Check all neighboring cells
         Cell c = m_cells[y * m_width + x];
         if ((x > 0 && m_cells[y * m_width + (x - 1)] != c)
             || (x < m_width - 1 && m_cells[y * m_width + (x + 1)] != c)
@@ -121,6 +127,7 @@ std::vector<std::pair<uint32_t, uint32_t>> Grid::GetRegionBoundary(const std::ve
     return boundary;
 }
 
+// Closest point on line (returns interpolation parameter)
 static float GetPointLineT(float ax, float ay, float bx, float by, float px, float py)
 {
     float abx = bx - ax;

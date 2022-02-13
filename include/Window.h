@@ -4,6 +4,10 @@
 
 struct GLFWwindow;
 
+/**
+ * @brief Encapsulates GLFW functionality.
+ * 
+ */
 class Window
 {
 public:

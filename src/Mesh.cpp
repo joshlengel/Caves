@@ -57,6 +57,7 @@ Mesh::Mesh(Grid &grid):
     Corner *corners = new Corner[grid.GetWidth() * grid.GetHeight()];
     Square *squares = new Square[(grid.GetWidth() - 1) * (grid.GetHeight() - 1)];
 
+    // Initialize corner nodes and center nodes
     uint32_t index = 0;
     for (uint32_t y = 0; y < grid.GetHeight(); ++y)
     for (uint32_t x = 0; x < grid.GetWidth(); ++x)
@@ -69,6 +70,7 @@ Mesh::Mesh(Grid &grid):
         c.active = grid[y][x];
     }
 
+    // Initialize squares
     index = 0;
     for (uint32_t y = 0; y < grid.GetHeight() - 1; ++y)
     for (uint32_t x = 0; x < grid.GetWidth() - 1; ++x)
@@ -91,6 +93,7 @@ Mesh::Mesh(Grid &grid):
     std::vector<unsigned int> indices;
     std::map<Node*, unsigned int> nodes;
 
+    // Looks up node. Adds if it doesn't exist yet otherwise returns existing one
     auto GetNodeIndex = [&](Node *n)
     {
         auto itr = nodes.find(n);
@@ -115,6 +118,7 @@ Mesh::Mesh(Grid &grid):
         indices.push_back(GetNodeIndex(n3));
     };
 
+    // Create mesh from each square
     index = 0;
     for (uint32_t y = 0; y < grid.GetHeight() - 1; ++y)
     for (uint32_t x = 0; x < grid.GetWidth() - 1; ++x)

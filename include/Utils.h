@@ -2,6 +2,9 @@
 
 #include<glad/glad.h>
 
+/**
+ * @brief OpenGL utility functions to avoid repetition.
+ */
 void InitializeBuffers2D(GLuint &vao, GLuint &vbo, GLuint &ibo);
 void InitializeShaders(GLuint &program, GLuint &vs, GLuint &fs, const char *v_src, const char *f_src);
 void GetUniform(GLuint program, const char *name, GLint &loc);
