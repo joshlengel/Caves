@@ -13,6 +13,8 @@ public:
 
     uint32_t GetWidth() const;
     uint32_t GetHeight() const;
+    float GetCellSizeX() const;
+    float GetCellSizeY() const;
 
     bool *operator[](size_t i);
 

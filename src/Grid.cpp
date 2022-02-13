@@ -87,6 +87,8 @@ Grid::~Grid()
 
 uint32_t Grid::GetWidth() const { return m_width; }
 uint32_t Grid::GetHeight() const { return m_height; }
+float Grid::GetCellSizeX() const { return m_cell_size_x; }
+float Grid::GetCellSizeY() const { return m_cell_size_y; }
 
 bool *Grid::operator[](size_t i) { return m_cells + i * m_width; }
 
