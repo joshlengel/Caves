@@ -22,11 +22,11 @@ static const uint32_t STEPS_PER_SECOND = 10;
 int main()
 {
     Window window(WIDTH, HEIGHT, TITLE);
-    glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+    glClearColor(0.3f, 0.2f, 0.1f, 1.0f);
 
     // Create random grid
     srand(time(nullptr));
-    Grid grid(GRID_WIDTH, GRID_HEIGHT, CELL_SIZE_X, CELL_SIZE_Y, 0.5f);
+    Grid grid(GRID_WIDTH, GRID_HEIGHT, CELL_SIZE_X, CELL_SIZE_Y, 0.45f);
 
     // Smooth it out
     Automaton automaton(grid);
