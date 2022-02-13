@@ -24,13 +24,19 @@ int main()
     Window window(WIDTH, HEIGHT, TITLE);
     glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 
+    // Create random grid
     srand(time(nullptr));
-    Grid grid(GRID_WIDTH, GRID_HEIGHT, CELL_SIZE_X, CELL_SIZE_Y, 0.54f);
+    Grid grid(GRID_WIDTH, GRID_HEIGHT, CELL_SIZE_X, CELL_SIZE_Y, 0.5f);
 
+    // Smooth it out
     Automaton automaton(grid);
     for (uint32_t i = 0; i < 10; ++i)
         automaton.Step();
+
+    // Add finishing touches
+    grid.Process();
     
+    // Generate mesh with marching squares
     Mesh mesh(grid);
 
     window.Show();

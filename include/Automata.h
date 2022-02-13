@@ -1,6 +1,6 @@
 #pragma once
 
-class Grid;
+#include"Grid.h"
 
 class Automaton
 {
@@ -12,5 +12,5 @@ public:
 
 private:
     Grid &m_grid;
-    bool *m_tmp;
+    Cell *m_tmp;
 };

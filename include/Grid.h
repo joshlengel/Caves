@@ -2,6 +2,13 @@
 
 #include<cstdint>
 #include<cstddef>
+#include<vector>
+
+enum Cell
+{
+    CELL_EMPTY = 0,
+    CELL_WALL
+};
 
 class Grid
 {
@@ -14,10 +21,16 @@ public:
     float GetCellSizeX() const;
     float GetCellSizeY() const;
 
-    bool *operator[](size_t i);
+    Cell *operator[](size_t i);
+
+    std::vector<std::vector<std::pair<uint32_t, uint32_t>>> GetRegions(Cell type) const;
+    std::vector<std::pair<uint32_t, uint32_t>> GetRegionBoundary(const std::vector<std::pair<uint32_t, uint32_t>> &region) const;
+    void SetRegion(const std::vector<std::pair<uint32_t, uint32_t>> &region, Cell res);
+
+    void Process();
 
 private:
     uint32_t m_width, m_height;
     float m_cell_size_x, m_cell_size_y;
-    bool *m_cells;
+    Cell *m_cells;
 };
