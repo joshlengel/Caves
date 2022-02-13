@@ -3,8 +3,6 @@
 #include<cstdint>
 #include<cstddef>
 
-struct GridData;
-
 class Grid
 {
 public:
@@ -18,12 +16,8 @@ public:
 
     bool *operator[](size_t i);
 
-    void Render();
-
 private:
     uint32_t m_width, m_height;
     float m_cell_size_x, m_cell_size_y;
     bool *m_cells;
-
-    GridData *m_data;
 };
